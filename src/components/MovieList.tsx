@@ -12,9 +12,7 @@ function MovieList() {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${
-        import.meta.env.VITE_API_KEY
-      }&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=1`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -30,7 +28,7 @@ function MovieList() {
       {movies.map((movie) => (
         <div key={movie.id}>
           <h1>{movie.title}</h1>
-          <button onClick={()=> {navigate("/movie")}}>Go to details</button>
+          <button onClick={()=> {navigate(`/movie/${movie.id}`)}}>Go to details</button>
         </div>
       ))}
     </div>
