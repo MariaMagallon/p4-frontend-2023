@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-interface Movie {
-  id: number;
-  title: string;
-}
+import { Movie, getImg } from "../utils/movieUtils";
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -28,6 +24,7 @@ function MovieList() {
       {movies.map((movie) => (
         <div key={movie.id}>
           <h1>{movie.title}</h1>
+          <img src={getImg(movie.backdrop_path)} alt={movie.title} />
           <button onClick={()=> {navigate(`/movie/${movie.id}`)}}>Go to details</button>
         </div>
       ))}

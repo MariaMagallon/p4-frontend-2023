@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-}
+import { Movie, getImg } from "../utils/movieUtils";
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
@@ -28,6 +23,8 @@ function Detail() {
         <>
           <h1>{movie.title}</h1>
           <p>{movie.overview}</p>
+          <img src={getImg(movie.backdrop_path)} alt={movie.title} />
+          <p>{movie.genres[0].name}</p>
         </>
       )}
     </div>
