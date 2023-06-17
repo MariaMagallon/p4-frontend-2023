@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Movie {
   id: number;
@@ -7,6 +8,7 @@ interface Movie {
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -28,6 +30,7 @@ function MovieList() {
       {movies.map((movie) => (
         <div key={movie.id}>
           <h1>{movie.title}</h1>
+          <button onClick={()=> {navigate("/movie")}}>Go to details</button>
         </div>
       ))}
     </div>
