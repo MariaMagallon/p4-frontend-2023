@@ -5,9 +5,9 @@ import styles from "./NavBar.module.css"
 function NavBar() {
   return (
     <nav className={styles.navbar}>
-      <h2>
+      <h2 className={styles.home} >
         <Link to="/">
-          Home
+          HOME
         </Link>
       </h2>
       <SearchBar/>

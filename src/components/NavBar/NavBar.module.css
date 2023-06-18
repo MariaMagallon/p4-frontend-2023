@@ -4,3 +4,10 @@
   align-items: center;
   padding: 1rem 2rem;
 }
+
+.home {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 20px;
+}
