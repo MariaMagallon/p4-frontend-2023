@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Movie, getImg } from "../utils/movieUtils";
+import { Movie, getImg } from "../../utils/movieUtils";
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
