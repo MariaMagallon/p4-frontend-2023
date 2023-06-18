@@ -1,3 +1,7 @@
+export class Genre {
+  constructor(public id: number, public name: string) {}
+}
+
 export class Movie {
   constructor(
     public id: number,
@@ -13,11 +17,6 @@ export class Movie {
 
 export const getImg = (partUrl: string) =>
   !partUrl ? "" : "https://image.tmdb.org/t/p/w500" + partUrl;
-
-export class Genre {
-  constructor(public id: number, public name: string) {}
-}
-
 
 export async function getDirector(id: string) : Promise<string> {
   const response = await fetch(
