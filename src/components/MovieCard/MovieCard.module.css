@@ -1,0 +1,43 @@
+.movie {
+  width: 300px;
+  margin: 1rem;
+  border-radius: 3px;
+  box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie img {
+  width: 100%;
+}
+
+.details {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: turquoise;
+  padding: 1rem;
+  max-height: 120%;
+  transform: translateY(120%);
+  transition: transform 0.3s ease-in;
+}
+
+.more span {
+  background-color: black;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.movie:hover .details {
+  transform: translateY(0);
+}
+
+.details h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+}

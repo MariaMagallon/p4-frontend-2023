@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Movie, getImg } from "../../utils/movieUtils";
+//import { useNavigate } from "react-router-dom";
+import { Movie } from "../../utils/movieUtils";
+import MovieCard from "../MovieCard";
+import styles from "./MovieList.module.css"
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -20,15 +22,14 @@ function MovieList() {
   }, []);
 
   return (
-    <div>
+    <section className={styles.grid}>
       {movies.map((movie) => (
         <div key={movie.id}>
-          <h1>{movie.title}</h1>
-          <img src={getImg(movie.backdrop_path)} alt={movie.title} />
-          <button onClick={()=> {navigate(`/movie/${movie.id}`)}}>Go to details</button>
+          {/*<button onClick={()=> {navigate(`/movie/${movie.id}`)}}>Go to details</button>*/}
+          <MovieCard movie={movie} ></MovieCard>
         </div>
       ))}
-    </div>
+    </section>
   );
 }
 
