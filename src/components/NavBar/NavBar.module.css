@@ -8,6 +8,6 @@
 .home {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  margin-left: 6%;
   font-size: 20px;
 }
