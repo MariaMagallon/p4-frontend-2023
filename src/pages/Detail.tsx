@@ -4,6 +4,7 @@ import { Cast, Genre, Movie, getImg } from "../utils/movieUtils";
 import CastList from "../components/CastList";
 import GenreList from "../components/GenreList";
 import CircularRate from "../components/CircularRate";
+import placeholder from "../assets/placeholder.png"
 import styles from "./Detail.module.css";
 
 
@@ -19,7 +20,6 @@ function Detail() {
       .then((data) => {
         const director: string = data.credits.crew.find((member: any) => member.job === "Director")?.name || "Director not found";
         const date: string = data.release_date ? data.release_date : "Comming Soon";
-        const backdrop: string = data.backdrop_path ? data.backdrop_path : "../assets/placeholder.png";
         const cast: Cast[] = data.credits.cast.slice(0, 5);
         const genres: Genre[] = data.genres.slice(0, 5);
         const movieObject: Movie = {
@@ -28,7 +28,6 @@ function Detail() {
           cast: cast,
           genres: genres,
           release_date: date,
-          backdrop_path: backdrop
         };
         setMovie(movieObject);
       })
@@ -42,11 +41,20 @@ function Detail() {
       {movie && (
         <div
           className={styles.banner}
-          style={{ backgroundImage: `url(${getImg(movie.backdrop_path)})` }}
+          style={{
+            backgroundImage: `url(${
+              movie.backdrop_path ? getImg(movie.backdrop_path) : placeholder
+            })`,
+          }}
         >
           <div className={styles.movieContent}>
             <div className={styles.poster}>
-              <img src={getImg(movie.poster_path)} alt={movie.title} />
+              <img
+                src={
+                  movie.poster_path ? getImg(movie.poster_path) : placeholder
+                }
+                alt={movie.title}
+              />
             </div>
             <div className={styles.info}>
               <h1 className={styles.title}>{movie.title.toUpperCase()}</h1>
@@ -63,10 +71,12 @@ function Detail() {
                 <h2>OVERVIEW</h2>
                 <p className="overview">{movie.overview}</p>
               </div>
-              <div className="cast">
-                <h2>CAST</h2>
-                <CastList cast={movie.cast} />
-              </div>
+              {movie.cast && (
+                <div className="cast">
+                  <h2>CAST</h2>
+                  <CastList cast={movie.cast} />
+                </div>
+              )}
             </div>
           </div>
         </div>

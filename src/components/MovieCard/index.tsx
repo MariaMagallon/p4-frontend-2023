@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Movie, getImg } from "../../utils/movieUtils";
-import styles from "./MovieCard.module.css";
 import CircularRate from "../CircularRate";
+import placeholder from "../../assets/placeholder.png";
+import styles from "./MovieCard.module.css";
+
 type MovieCardProps = {
     movie: Movie
 }
@@ -10,7 +12,7 @@ function MovieCard(props: MovieCardProps) {
   return (
     <Link to={`/movie/${movie.id}`}>
       <div className={styles.movie}>
-        <img src={getImg(movie.poster_path)} alt={movie.title} />
+        <img src={movie.poster_path ? getImg(movie.poster_path) : placeholder} alt={movie.title} />
         <div className="movieInfo">
           <h3>{movie.title}</h3>
           <span>
