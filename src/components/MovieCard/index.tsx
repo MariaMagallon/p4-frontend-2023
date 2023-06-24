@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Movie, getColor, getImg } from "../../utils/movieUtils";
+import { Movie, getImg } from "../../utils/movieUtils";
 import styles from "./MovieCard.module.css";
-
+import CircularRate from "../CircularRate";
 type MovieCardProps = {
     movie: Movie
 }
@@ -13,8 +13,8 @@ function MovieCard(props: MovieCardProps) {
         <img src={getImg(movie.poster_path)} alt={movie.title} />
         <div className="movieInfo">
           <h3>{movie.title}</h3>
-          <span className={getColor(movie.vote_average)}>
-            {movie.vote_average}
+          <span>
+            <CircularRate value={movie.vote_average}/>
           </span>
         </div>
         <div className={styles.details}>

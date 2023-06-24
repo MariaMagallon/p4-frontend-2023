@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Cast, Genre, Movie, getColor, getImg } from "../utils/movieUtils";
+import { Cast, Genre, Movie, getImg } from "../utils/movieUtils";
 import CastList from "../components/CastList";
 import GenreList from "../components/GenreList";
+import CircularRate from "../components/CircularRate";
 import styles from "./Detail.module.css";
+
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
@@ -52,11 +54,7 @@ function Detail() {
                 <p className={styles.date}>
                   {movie.release_date} | Directed By: {movie.director}
                 </p>
-                <div className="movieInfo">
-                  <span className={getColor(movie.vote_average)}>
-                    {movie.vote_average}
-                  </span>
-                </div>
+                <CircularRate value={movie.vote_average}></CircularRate>
               </div>
               <div className={styles.genres}>
                 <GenreList genres={movie.genres} />

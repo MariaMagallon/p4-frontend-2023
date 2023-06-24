@@ -43,4 +43,6 @@
 
 .date {
     font-size: larger;
+    font-weight: bold;
+    padding-right: 20px;
 }

@@ -1,6 +1,9 @@
 # Frontend en Typescript usando React
 
-Se trata de hacer un _frontend_ usando React con Typescript. 
+! ATENCIÓN: este proyecto tiene las siguientes dependencias: [MuiMaterial](https://mui.com/), [React Icons](https://www.npmjs.com/package/react-icons) y [React Dom](https://www.npmjs.com/package/react-router-dom).
+Instalar previamente con el comando npm install
+
+Se trata de hacer un _frontend_ usando React con Typescript.
 
 La API para este backend es una cualquiera, en el campus encontraréis un PDF con ejemplos de APIs curiosas, pero no es necesario usar una de esas, hay muchas más. Se trata de usar los datos de la API escogida (típicamente suelen ser APIs de solo lectura, o se puede escribir poco) y mostrarlos de una forma atractiva y hasta cierto punto interactiva.
 
