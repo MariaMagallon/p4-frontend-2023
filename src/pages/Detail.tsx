@@ -1,21 +1,34 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Movie, getImg } from "../utils/movieUtils";
+import { Cast, Genre, Movie, getColor, getImg } from "../utils/movieUtils";
+import CastList from "../components/CastList";
+import GenreList from "../components/GenreList";
+import styles from "./Detail.module.css";
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=credits`)
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=credits`
+    )
       .then((response) => response.json())
       .then((data) => {
-        const director = data.credits.crew.find((member: any) => member.job === "Director")?.name || "Director not found";
+        const director: string = data.credits.crew.find((member: any) => member.job === "Director")?.name || "Director not found";
+        const date: string = data.release_date ? data.release_date : "Comming Soon";
+        const backdrop: string = data.backdrop_path ? data.backdrop_path : "../assets/placeholder.png";
+        const cast: Cast[] = data.credits.cast.slice(0, 5);
+        const genres: Genre[] = data.genres.slice(0, 5);
         const movieObject: Movie = {
           ...data,
-          director: director
-        }
-        setMovie (movieObject);
+          director: director,
+          cast: cast,
+          genres: genres,
+          release_date: date,
+          backdrop_path: backdrop
+        };
+        setMovie(movieObject);
       })
       .catch((error) => {
         console.error("ERROR ON FETCHING DATA", error);
@@ -23,20 +36,44 @@ function Detail() {
   }, [id]);
 
   return (
-    <div>
+    <>
       {movie && (
-        <>
-          <h1>{movie.title}</h1>
-          <p>{movie.overview}</p>
-          <img src={getImg(movie.backdrop_path)} alt={movie.title} />
-          <div className="row">
-            <h3>Directed By: </h3>
-            <h3 className="field">{movie.director}</h3>
+        <div
+          className={styles.banner}
+          style={{ backgroundImage: `url(${getImg(movie.backdrop_path)})` }}
+        >
+          <div className={styles.movieContent}>
+            <div className={styles.poster}>
+              <img src={getImg(movie.poster_path)} alt={movie.title} />
+            </div>
+            <div className={styles.info}>
+              <h1 className={styles.title}>{movie.title.toUpperCase()}</h1>
+              <div className="row">
+                <p className={styles.date}>
+                  {movie.release_date} | Directed By: {movie.director}
+                </p>
+                <div className="movieInfo">
+                  <span className={getColor(movie.vote_average)}>
+                    {movie.vote_average}
+                  </span>
+                </div>
+              </div>
+              <div className={styles.genres}>
+                <GenreList genres={movie.genres} />
+              </div>
+              <div className="cast">
+                <h2>OVERVIEW</h2>
+                <p className="overview">{movie.overview}</p>
+              </div>
+              <div className="cast">
+                <h2>CAST</h2>
+                <CastList cast={movie.cast} />
+              </div>
+            </div>
           </div>
-          <p>{movie.genres[0].name}</p>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

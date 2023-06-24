@@ -1,0 +1,19 @@
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -35px;
+}
+
+.item {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color:#d62929;
+    color: #fff;
+    border-radius: 50px;
+    margin: 5px;
+    cursor: pointer;
+    display: inline-block;
+    list-style: none;
+    margin-right: 12px;
+}
+

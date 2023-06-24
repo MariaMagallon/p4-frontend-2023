@@ -14,7 +14,7 @@ function MovieCard(props: MovieCardProps) {
         <div className="movieInfo">
           <h3>{movie.title}</h3>
           <span className={getColor(movie.vote_average)}>
-            ${movie.vote_average}
+            {movie.vote_average}
           </span>
         </div>
         <div className={styles.details}>

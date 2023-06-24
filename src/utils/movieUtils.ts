@@ -19,8 +19,8 @@ export class Movie {
     public backdrop_path: string,
     public overview: string,
     public director: string,
-    public genres: Array<Genre>,
-    public cast: Array<Cast>,
+    public genres: Genre[],
+    public cast: Cast[],
     public vote_average: number
   ) {}
 }
