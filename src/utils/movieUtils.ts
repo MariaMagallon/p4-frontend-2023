@@ -1,5 +1,13 @@
-export class Genre {
-  constructor(public id: number, public name: string) {}
+
+export type Genre = {
+  id: number,
+  name: string
+}
+
+export type Cast = {
+  id: number,
+  name: string,
+  profile_path: string,
 }
 
 export class Movie {
@@ -12,6 +20,7 @@ export class Movie {
     public overview: string,
     public director: string,
     public genres: Array<Genre>,
+    public cast: Array<Cast>,
     public vote_average: number
   ) {}
 }
@@ -28,14 +37,3 @@ export const getColor = (vote: number) => {
     return "red";
   }
 };
-
-export async function getDirector(id: string): Promise<string> {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${
-      import.meta.env.VITE_API_KEY
-    }`
-  );
-  const { crew }: any = await response.json();
-  const director = crew.find((result: any) => result.job === "Director");
-  return director ? director.name : "Director not found";
-}
