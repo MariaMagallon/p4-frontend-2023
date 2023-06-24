@@ -17,18 +17,23 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: turquoise;
+  background-color: #1e1e1e;
   padding: 1rem;
   max-height: 120%;
   transform: translateY(120%);
   transition: transform 0.3s ease-in;
 }
 
-.more span {
-  background-color: black;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
+.more {
+  background-color: rgba(0, 0, 0, 0.705);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 4px;
   font-weight: bold;
+}
+
+.movie:hover {
+  width: 310px;
 }
 
 .movie:hover .details {
@@ -38,6 +43,6 @@
 .details h3 {
   margin-top: 0;
   font-size: 16px;
-  color: black;
+  color: white;
   text-decoration: none;
 }
