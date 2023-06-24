@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Movie, getImg } from "../utils/movieUtils";
+import { useSearchParams } from "react-router-dom";
+import { Movie } from "../utils/movieUtils";
+import MovieCard from "../components/MovieCard";
 
 function Search() {
   const [searchParams] = useSearchParams();
   const [movies, setMovies] = useState<Movie[]>([]);
-  const navigate = useNavigate();
   const query = searchParams.get("q");
 
   useEffect(()=> {
@@ -24,24 +24,18 @@ function Search() {
 
   return (
     <div>
-      <h2>Results related with: {query}</h2>
+      <h2 className="margin">Results related with: {query}</h2>
+      <section className="grid">
       {movies.length > 0 ? (
         movies.map((movie) => (
           <div key={movie.id}>
-            <h1>{movie.title}</h1>
-            <img src={getImg(movie.backdrop_path)} alt={movie.title} />
-            <button
-              onClick={() => {
-                navigate(`/movie/${movie.id}`);
-              }}
-            >
-              Go to details
-            </button>
+            <MovieCard movie={movie} ></MovieCard>
           </div>
         ))
       ) : (
         <h2>No results found</h2>
       )}
+      </section>
     </div>
   );
 }
