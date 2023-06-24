@@ -24,11 +24,7 @@ function MovieCard(props: MovieCardProps) {
             </div>
           ) : (
             <h3>Release Date: Comming Soon</h3>
-          )}
-          {/* <div class="row">
-            <h3>Directed By: </h3>
-            <h3 class="field">${film.director}</h3>
-          </div> = TODO:fer components release date i director*/}
+          )}          
           <div className={styles.more}>
             <span className={styles.moreTitle}>Click on the card for more</span>
           </div>

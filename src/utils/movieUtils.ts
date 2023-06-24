@@ -10,6 +10,7 @@ export class Movie {
     public poster_path: string,
     public backdrop_path: string,
     public overview: string,
+    public director: string,
     public genres: Array<Genre>,
     public vote_average: number
   ) {}
