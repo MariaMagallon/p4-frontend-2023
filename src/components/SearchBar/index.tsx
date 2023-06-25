@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
-import styles from "./SearchBar.module.css"
+import styles from "./SearchBar.module.css";
+
 function SearchBar() {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();

@@ -54,6 +54,6 @@ const getColor = (vote: number): any => {
     } else {
       return "error";
     }
-  };
+};
 
 export default CircularRate;

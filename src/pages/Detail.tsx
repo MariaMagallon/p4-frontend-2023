@@ -47,9 +47,7 @@ function Detail() {
         <div
           className={styles.banner}
           style={{
-            backgroundImage: `url(${
-              movie.backdrop_path ? getImg(movie.backdrop_path) : placeholder
-            })`,
+            backgroundImage: `url(${movie.backdrop_path ? getImg(movie.backdrop_path) : placeholder})`,
           }}
         >
           <button className={styles.back} onClick={() => history(-1)}>
