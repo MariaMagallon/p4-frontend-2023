@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Cast, Genre, Movie, getImg } from "../utils/movieUtils";
 import CastList from "../components/CastList";
 import GenreList from "../components/GenreList";
 import CircularRate from "../components/CircularRate";
-import placeholder from "../assets/placeholder.png"
+import placeholder from "../assets/placeholder.png";
+import { BiArrowBack } from "react-icons/bi";
 import styles from "./Detail.module.css";
-
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
   const [movie, setMovie] = useState<Movie | null>(null);
+  const history = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -18,8 +19,12 @@ function Detail() {
     )
       .then((response) => response.json())
       .then((data) => {
-        const director: string = data.credits.crew.find((member: any) => member.job === "Director")?.name || "Director not found";
-        const date: string = data.release_date ? data.release_date : "Comming Soon";
+        const director: string =
+          data.credits.crew.find((member: any) => member.job === "Director")
+            ?.name || "Director not found";
+        const date: string = data.release_date
+          ? data.release_date
+          : "Comming Soon";
         const cast: Cast[] = data.credits.cast.slice(0, 5);
         const genres: Genre[] = data.genres.slice(0, 5);
         const movieObject: Movie = {
@@ -47,6 +52,9 @@ function Detail() {
             })`,
           }}
         >
+          <button className={styles.back} onClick={() => history(-1)}>
+            <BiArrowBack />
+          </button>
           <div className={styles.movieContent}>
             <div className={styles.poster}>
               <img
@@ -64,15 +72,15 @@ function Detail() {
                 </p>
                 <CircularRate value={movie.vote_average}></CircularRate>
               </div>
-              <div className={styles.genres}>
+              <div className={styles.pb}>
                 <GenreList genres={movie.genres} />
               </div>
-              <div className="cast">
+              <div className={styles.pb}>
                 <h2>OVERVIEW</h2>
-                <p className="overview">{movie.overview}</p>
+                <p>{movie.overview}</p>
               </div>
               {movie.cast && (
-                <div className="cast">
+                <div>
                   <h2>CAST</h2>
                   <CastList cast={movie.cast} />
                 </div>

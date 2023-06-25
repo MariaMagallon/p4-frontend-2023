@@ -37,12 +37,26 @@
   width: 70%;
 }
 
-.genres {
-  padding-bottom: 5%;
+.pb {
+  padding-bottom: 10px;
 }
 
 .date {
     font-size: larger;
     font-weight: bold;
     padding-right: 20px;
+}
+
+.back {
+  background-color: #d62929;
+  border: solid 4px #d62929;
+  border-radius: 4px;
+  color: #000;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #fff;
+  border: solid 4px #fff;
 }
