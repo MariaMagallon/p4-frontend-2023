@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { Movie } from "../../utils/movieUtils";
 import MovieCard from "../MovieCard";
 
-function MovieList() {
+type MovieListProps = {
+  page: number;
+}
+function MovieList(props: MovieListProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const {page} = props;
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=${page}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -16,7 +20,7 @@ function MovieList() {
       .catch((error) => {
         console.error("ERROR ON FETCHING DATA", error);
       });
-  }, []);
+  }, [page]);
 
   return (
     <section className="grid">

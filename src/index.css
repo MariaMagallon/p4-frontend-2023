@@ -22,8 +22,8 @@ a {
 }
 
 a:hover {
-    color: #d62929;
-    cursor: pointer;
+  color: #d62929;
+  cursor: pointer;
 }
 
 .row {
@@ -61,4 +61,42 @@ a:hover {
 .margin {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.pagination {
+  display: flex;
+  margin: 10px 30px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.current {
+  padding: 15px 20px;
+  border-radius: 100%;
+  border: 5px solid #d62929;
+  font-size: large;
+  font-weight: bold;
+}
+
+.page {
+  padding: 10px 20px;
+  background-color: #d62929;
+  color: #fff;
+  border-radius: 50px;
+  border: 2px solid #d62929;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.page:disabled {
+  background-color: #888484;
+  border: 2px solid #888484;
+}
+
+.page:hover {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: #000;
 }

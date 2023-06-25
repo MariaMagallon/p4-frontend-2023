@@ -28,12 +28,3 @@ export class Movie {
 export const getImg = (partUrl: string) =>
   !partUrl ? "" : "https://image.tmdb.org/t/p/w500" + partUrl;
 
-export const getColor = (vote: number) => {
-  if (vote >= 8) {
-    return "green";
-  } else if (vote >= 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
-};
